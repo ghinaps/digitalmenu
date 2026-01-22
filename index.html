@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cafe – Menu Digital</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="topbar">
+      <div class="brand">☕ GHin4 FOOD</div>
+
+      <!-- HAMBURGER DI ATAS KANAN -->
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+    </header>
+
+    <!-- DROPDOWN CATEGORY -->
+    <nav class="side-menu" id="sideMenu">
+      <button onclick="filterCategory('all')">Menu</button>
+      <button onclick="filterCategory('coffee')">☕ Coffee</button>
+      <button onclick="filterCategory('noncoffee')">🥤 Non Coffee</button>
+      <button onclick="filterCategory('snack')">🍟 Snack</button>
+      <button onclick="filterCategory('food')">🍜 Makanan</button>
+    </nav>
+
+    <!-- ================= HOME PAGE ================= -->
+    <section id="homePage" class="page">
+      <h2 class="category-title">Coffee</h2>
+      <div class="menu-list">
+        <div class="menu-card coffee">
+          <img src="images/kapalapi.png" />
+          <div class="menu-info">
+            <h3>Kapal Api</h3>
+            <span>Rp 5.000</span>
+          </div>
+          <button
+            class="plus-btn"
+            onclick="openDetail('Kapal Api', 5000, 'kapalapi.png')"
+          >
+            +
+          </button>
+        </div>
+
+        <div class="menu-card coffee">
+          <img src="images/indocaffe.png" />
+          <div class="menu-info">
+            <h3>Indocaffe</h3>
+            <span>Rp 5.000</span>
+          </div>
+          <button
+            class="plus-btn"
+            onclick="openDetail('Indocaffe', 5000, 'indocaffe.png')"
+          >
+            +
+          </button>
+        </div>
+      </div>
+
+      <h2 class="category-title">Non Coffee</h2>
+      <div class="menu-list">
+        <div class="menu-card noncoffee">
+          <img src="images/nutrisari.png" />
+          <div class="menu-info">
+            <h3>Nutrisari</h3>
+            <span>Rp 5.000</span>
+          </div>
+          <button
+            class="plus-btn"
+            onclick="openDetail('Nutrisari', 5000, 'nutrisari.png')"
+          >
+            +
+          </button>
+        </div>
+      </div>
+
+      <h2 class="category-title">Snack</h2>
+      <div class="menu-list">
+        <div class="menu-card snack">
+          <img src="images/keripikusus.png" />
+          <div class="menu-info">
+            <h3>Keripik Usus</h3>
+            <span>Rp 2.000</span>
+          </div>
+          <button
+            class="plus-btn"
+            onclick="openDetail('Keripik Usus', 2000, 'keripikusus.png')"
+          >
+            +
+          </button>
+        </div>
+      </div>
+
+      <h2 class="category-title">Makanan</h2>
+      <div class="menu-list">
+        <div class="menu-card food">
+          <img src="images/indomie.png" />
+          <div class="menu-info">
+            <h3>Indomie</h3>
+            <span>Rp 7.000</span>
+          </div>
+          <button
+            class="plus-btn"
+            onclick="openDetail('Indomie', 7000, 'indomie.png')"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DETAIL PAGE ================= -->
+    <section id="detailPage" class="page hidden">
+      <header class="topbar">
+        <button class="back" onclick="backHome()">←</button>
+        <div id="detailTitle"></div>
+      </header>
+
+      <div class="detail-content">
+        <img id="detailImg" />
+
+        <div class="variant">
+          <label
+            ><input type="radio" name="variant" value="Original" checked />
+            Original</label
+          >
+          <label
+            ><input type="radio" name="variant" value="Tanpa Gula" /> Tanpa
+            Gula</label
+          >
+          <label><input type="radio" name="variant" value="Gula" /> Gula</label>
+        </div>
+
+        <div class="qty">
+          <button onclick="changeQty(-1)">−</button>
+          <span id="qty">1</span>
+          <button onclick="changeQty(1)">+</button>
+        </div>
+
+        <div class="subtotal">Subtotal: <span id="subtotal">Rp 0</span></div>
+
+        <button class="order-btn" onclick="addToCart()">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+      <div class="cart">
+        <h3>🛒 Keranjang</h3>
+        <div id="cartItems"></div>
+        <div class="cart-total">Total: <span id="cartTotal">Rp 0</span></div>
+        <button class="order-btn" onclick="checkout()">Pesan Sekarang</button>
+      </div>
+    </section>
+
+    <script>
+      let cart = [];
+      let current = {};
+      let qty = 1;
+
+      function toggleMenu() {
+        document.getElementById("sideMenu").classList.toggle("show");
+      }
+
+      function filterCategory(cat) {
+        document.querySelectorAll(".menu-card").forEach((c) => {
+          c.style.display =
+            cat === "all" || c.classList.contains(cat) ? "flex" : "none";
+        });
+        toggleMenu();
+      }
+
+      function openDetail(name, price, img) {
+        current = { name, price };
+        qty = 1;
+        homePage.classList.add("hidden");
+        detailPage.classList.remove("hidden");
+        detailTitle.textContent = name;
+        detailImg.src = "images/" + img;
+        qtyEl.textContent = qty;
+        updateSubtotal();
+      }
+
+      function backHome() {
+        detailPage.classList.add("hidden");
+        homePage.classList.remove("hidden");
+      }
+
+      function changeQty(v) {
+        qty = Math.max(1, qty + v);
+        qtyEl.textContent = qty;
+        updateSubtotal();
+      }
+
+      function updateSubtotal() {
+        subtotal.textContent =
+          "Rp " + (qty * current.price).toLocaleString("id-ID");
+      }
+
+      function addToCart() {
+        const variant = document.querySelector(
+          'input[name="variant"]:checked',
+        ).value;
+        cart.push({ ...current, qty, variant });
+        renderCart();
+      }
+
+      function renderCart() {
+        let html = "",
+          total = 0;
+        cart.forEach((i, idx) => {
+          total += i.qty * i.price;
+          html += `<div class="cart-item">
+      ${i.name} (${i.variant}) x${i.qty}
+      <button onclick="removeItem(${idx})">✕</button>
+    </div>`;
+        });
+        cartItems.innerHTML = html;
+        cartTotal.textContent = "Rp " + total.toLocaleString("id-ID");
+      }
+
+      function removeItem(i) {
+        cart.splice(i, 1);
+        renderCart();
+      }
+
+      function checkout() {
+        if (!cart.length) return alert("Keranjang kosong");
+        let msg = "Halo, saya ingin pesan:%0A";
+        cart.forEach((i) => {
+          msg += `- ${i.name} (${i.variant}) x${i.qty}%0A`;
+        });
+        window.open(`https://wa.me/6281318229451?text=${msg}`, "_blank");
+      }
+
+      const homePage = document.getElementById("homePage");
+      const detailPage = document.getElementById("detailPage");
+      const detailTitle = document.getElementById("detailTitle");
+      const detailImg = document.getElementById("detailImg");
+      const qtyEl = document.getElementById("qty");
+      const subtotal = document.getElementById("subtotal");
+      const cartItems = document.getElementById("cartItems");
+      const cartTotal = document.getElementById("cartTotal");
+    </script>
+  </body>
+</html>
