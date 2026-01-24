@@ -1,0 +1,396 @@
+* {
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  background: #0b5f47;
+  color: #333;
+}
+
+/* HEADER */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background: #efe7db;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* CART ICON */
+.cart-btn {
+  position: relative;
+  font-size: 22px;
+  background: none;
+  border: none;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background: red;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.hidden {
+  display: none;
+}
+
+/* HAMBURGER */
+.hamburger {
+  font-size: 22px;
+  background: none;
+  border: none;
+}
+
+/* SIDE MENU */
+.side-menu {
+  position: absolute;
+  top: 60px;
+  right: 16px;
+  background: #fff;
+  padding: 12px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  z-index: 20;
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+  transition: 0.2s ease;
+}
+
+.side-menu.show {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.side-menu button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 6px;
+  border: none;
+  border-radius: 10px;
+}
+
+/* CATEGORY */
+.category-title {
+  color: #fff;
+  margin: 20px 16px 10px;
+  font-weight: 600;
+}
+
+/* MENU */
+.menu-list {
+  padding: 0 16px;
+}
+
+.menu-card {
+  background: #fff;
+  border-radius: 18px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  padding: 14px 60px 14px 14px;
+  position: relative;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  transition: 0.2s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-2px);
+}
+
+.menu-card img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #0b5f47;
+  padding: 6px;
+}
+
+.menu-info {
+  margin-left: 12px;
+}
+
+.menu-info h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.menu-info span {
+  font-weight: 600;
+  color: #0b5f47;
+}
+
+/* PLUS BUTTON */
+.plus-btn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: #0b5f47;
+  color: #fff;
+  font-size: 26px;
+  box-shadow: 0 4px 10px rgba(11, 95, 71, 0.5);
+}
+
+/* DETAIL */
+.detail-content {
+  padding: 16px;
+}
+
+.detail-content img {
+  width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  border-radius: 14px;
+  background: transparent;
+  padding: 10px;
+}
+
+.variant label {
+  display: block;
+  margin: 6px 0;
+}
+
+.qty {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.qty button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #0b5f47;
+  color: #fff;
+  font-size: 18px;
+}
+
+.subtotal {
+  text-align: center;
+  font-weight: 600;
+}
+
+/* BUTTON */
+.order-btn {
+  width: 100%;
+  padding: 12px;
+  background: #25d366;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.order-btn:active {
+  transform: scale(0.96);
+}
+
+/* CART */
+.cart {
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  padding: 14px;
+  box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.2);
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.cart-item button {
+  border: none;
+  background: #0b5f47;
+  color: #fff;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+.cart-item button:last-child {
+  background: #e53935;
+}
+.cart-btn {
+  position: relative;
+  z-index: 10;
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.cart-left {
+  flex: 1;
+}
+
+.cart-sub {
+  font-size: 13px;
+  color: #666;
+}
+
+.cart-price {
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.cart-remove {
+  background: #eee;
+  border: none;
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.cart-note {
+  margin: 12px 0;
+}
+
+.cart-note label {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.cart-note textarea {
+  width: 100%;
+  padding: 8px;
+  font-family: inherit;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+/* VARIANT & TOPPING TEXT */
+.variant label {
+  display: block;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+
+  color: #ffffff; /* PUTIH → jelas di hijau */
+  font-size: 14px;
+}
+
+/* radio & checkbox */
+.variant input {
+  accent-color: #ffffff;
+  margin-right: 6px;
+}
+
+/* hover biar enak diklik */
+.variant label:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* saat dipilih */
+.variant input:checked + span,
+.variant label:has(input:checked) {
+  background: rgba(255, 255, 255, 0.25);
+  font-weight: 600;
+}
+#variantBox label {
+  color: #fff;
+}
+
+#toppingBox label {
+  color: #ffeaa7; /* kuning lembut */
+}
+/* ===============================
+   SIDE MENU / HAMBURGER
+   =============================== */
+
+.side-menu {
+  position: fixed;
+  top: 60px; /* sesuaikan tinggi header */
+  right: -220px; /* sembunyi di kanan */
+  width: 220px;
+  height: calc(100vh - 60px);
+
+  background: #0b5f47; /* SAMA DENGAN MENU UTAMA */
+  padding: 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  transition: right 0.3s ease;
+  z-index: 999;
+}
+
+/* saat dibuka */
+.side-menu.show {
+  right: 0;
+}
+
+/* tombol kategori */
+.side-menu button {
+  width: 100%;
+  padding: 12px 10px;
+
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 8px;
+
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+}
+
+/* hover */
+.side-menu button:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* icon lebih jelas */
+.side-menu button span,
+.side-menu button {
+  line-height: 1.2;
+}
