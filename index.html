@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <meta charset="UTF-8" />
+    <title>Cafe – Menu Digital</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="topbar">
+      <div class="brand" onclick="goHome()">
+        <span class="brand-icon">
+          <i data-lucide="coffee"></i>
+        </span>
+        <span class="brand-main">GHin4</span>
+        <span class="brand-sub">Food & Drink</span>
+      </div>
+
+      <div class="top-actions">
+        <button class="cart-btn" onclick="openCart()">
+          <i data-lucide="shopping-cart"></i>
+          <span id="cartBadge" class="cart-badge hidden">0</span>
+        </button>
+
+        <button class="hamburger" onclick="toggleMenu()">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </header>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+
+    <!-- DROPDOWN -->
+    <nav class="side-menu" id="sideMenu">
+      <button onclick="filterCategory('all')">
+        <i data-lucide="menu"></i>
+        <span>Menu</span>
+      </button>
+
+      <button onclick="filterCategory('coffee')">
+        <i data-lucide="coffee"></i>
+        <span>Coffee</span>
+      </button>
+
+      <button onclick="filterCategory('drink')">
+        <i data-lucide="cup-soda"></i>
+        <span>Drink</span>
+      </button>
+
+      <button onclick="filterCategory('snack')">
+        <i data-lucide="popcorn"></i>
+        <span>Snack</span>
+      </button>
+
+      <button onclick="filterCategory('noodle')">
+        <i data-lucide="soup"></i>
+        <span>Noodle</span>
+      </button>
+    </nav>
+
+    <!-- HOME -->
+    <section id="homePage" class="page">
+      <!-- COFFEE -->
+      <div class="category coffee">
+        <h2 class="category-title">Coffee</h2>
+
+        <div class="menu-list">
+          <!-- Kapal Api -->
+          <div class="menu-card coffee">
+            <img src="images/kapalapi.png" />
+            <div class="menu-info">
+              <h3>Kapal Api</h3>
+              <span>Rp 5.000</span>
+            </div>
+            <button
+              class="plus-btn"
+              onclick="
+                openDetail(
+                  'Kapal Api',
+                  5000,
+                  'kapalapi.png',
+                  ['Original', 'Tanpa Gula', 'Es'],
+                  [{ name: 'Extra Kopi', price: 1000 }],
+                )
+              "
+            >
+              +
+            </button>
+          </div>
+          <!-- Liong Bulan -->
+          <div class="menu-card coffee">
+            <img src="images/liongbulan.png" />
+            <div class="menu-info">
+              <h3>Liong Bulan</h3>
+              <span>Rp 5.000</span>
+            </div>
+            <button
+              class="plus-btn"
+              onclick="
+                openDetail(
+                  'Liong Bulan',
+                  5000,
+                  'liongbulan.png',
+                  ['Original'],
+                  [{ name: 'Es Batu', price: 1000 }],
+                )
+              "
+            >
+              +
+            </button>
+          </div>
+
+          <!-- Abc susu -->
+          <div class="menu-card coffee">
+            <img src="images/abcsusu.png" />
+            <div class="menu-info">
+              <h3>Abc susu</h3>
+              <span>Rp 5.000</span>
+            </div>
+            <button
+              class="plus-btn"
+              onclick="
+                openDetail(
+                  'Abc susu',
+                  5000,
+                  'abcsusu.png',
+                  ['Original'],
+                  [{ name: 'Tambah Es', price: 1000 }],
+                )
+              "
+            >
+              +
+            </button>
+          </div>
+
+          <!-- Indocaffe -->
+          <div class="menu-card coffee">
+            <img src="images/indocaffe.png" />
+            <div class="menu-info">
+              <h3>Indocaffe</h3>
+              <span>Rp 5.000</span>
+            </div>
+            <button
+              class="plus-btn"
+              onclick="
+                openDetail(
+                  'Indocaffe',
+                  5000,
+                  'indocaffe.png',
+                  ['Original'],
+                  [{ name: 'Es Batu', price: 1000 }],
+                )
+              "
+            >
+              +
+            </button>
+          </div>
+          <!-- Good Day -->
+          <div class="menu-card coffee">
+            <img src="images/goodday.png" />
+            <div class="menu-info">
+              <h3>Good Day</h3>
+              <span>Rp 5.000</span>
+            </div>
+            <button
+              class="plus-btn"
+              onclick="
+                openDetail(
+                  'Good Day',
+                  5000,
+                  'goodday.png',
+                  ['Cappucino', 'Moccacino'],
+                  [{ name: 'Es Batu', price: 1000 }],
+                )
+              "
+            >
+              +
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- NON COFFEE -->
+      <div class="category drink">
+        <h2 class="category-title">Drink</h2>
+        <div class="menu-list">
+          <div class="menu-card drink">
+            <img src="images/nutrisari.png" />
+            <div class="menu-info">
+              <h3>Nutrisari</h3>
+              <span>Rp 5.000</span>
+            </div>
+            <button
+              class="plus-btn"
+              onclick="
+                openDetail(
+                  'Nutrisari',
+                  5000,
+                  'nutrisari.png',
+                  ['Jeruk', 'Mangga', 'Anggur'],
+                  [
+                    { name: 'Es Batu', price: 1000 },
+                    { name: 'Gula Extra', price: 500 },
+                  ],
+                )
+              "
+            >
+              +
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SNACK -->
+      <div class="category snack">
+        <h2 class="category-title">Snack</h2>
+        <div class="menu-list">
+          <div class="menu-card snack">
+            <img src="images/keripikusus.png" />
+            <div class="menu-info">
+              <h3>Keripik Usus</h3>
+              <span>Rp 2.000</span>
+            </div>
+            <button
+              class="plus-btn"
+              onclick="
+                openDetail('Keripik Usus', 2000, 'keripikusus.png', [
+                  'Original',
+                  'Balado',
+                  'Pedas Daun Jeruk',
+                ])
+              "
+            >
+              +
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOD -->
+      <div class="category noodle">
+        <h2 class="category-title">Noodle</h2>
+        <div class="menu-list">
+          <div class="menu-card noodle">
+            <img src="images/indomie.png" />
+            <div class="menu-info">
+              <h3>Indomie</h3>
+              <span>Rp 7.000</span>
+            </div>
+            <button
+              class="plus-btn"
+              onclick="
+                openDetail(
+                  'Indomie',
+                  7000,
+                  'indomie.png',
+                  ['Goreng', 'Soto', 'Ayam Bawang'],
+                  [
+                    { name: 'Telur', price: 3000 },
+                    { name: 'Keju', price: 2000 },
+                  ],
+                )
+              "
+            >
+              +
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAIL -->
+    <section id="detailPage" class="page hidden">
+      <header class="topbar">
+        <!-- <button class="back" onclick="backHome()">❮</button> -->
+
+        <div id="detailTitle"></div>
+      </header>
+
+      <div class="detail-content">
+        <img id="detailImg" />
+
+        <div class="variant" id="variantBox"></div>
+        <div class="variant" id="toppingBox"></div>
+
+        <div class="qty">
+          <button onclick="changeQty(-1)">−</button>
+          <span id="qty">1</span>
+          <button onclick="changeQty(1)">+</button>
+        </div>
+
+        <div class="subtotal">Subtotal: <span id="subtotal">Rp 0</span></div>
+        <button class="order-btn" onclick="addToCart()">
+          Tambah ke Keranjang
+        </button>
+      </div>
+      <div class="cart">
+        <div class="cart">
+          <h3>🛒 Pesanan Kamu</h3>
+
+          <div id="cartItems"></div>
+
+          <div class="cart-total">
+            Total Pesanan: <span id="cartTotal"></span>
+          </div>
+
+          <!-- CATATAN -->
+          <div class="cart-note">
+            <label for="orderNote">💬 Info Meja/Lokasi</label>
+
+            <textarea
+              id="orderNote"
+              placeholder="Tulis catatan untuk penjual (opsional)"
+              rows="2"
+            ></textarea>
+          </div>
+
+          <button class="order-btn" onclick="checkout()">
+            Kirim ke WhatsApp
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      let cart = [],
+        current = {},
+        qty = 1;
+
+      const homePage = document.getElementById("homePage");
+      const detailPage = document.getElementById("detailPage");
+      const detailTitle = document.getElementById("detailTitle");
+      const detailImg = document.getElementById("detailImg");
+      const qtyEl = document.getElementById("qty");
+      const subtotal = document.getElementById("subtotal");
+      const variantBox = document.getElementById("variantBox");
+      const toppingBox = document.getElementById("toppingBox");
+      const cartBadge = document.getElementById("cartBadge");
+
+      function saveCart() {
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
+
+      function loadCart() {
+        const saved = localStorage.getItem("cart");
+        if (saved) {
+          cart = JSON.parse(saved);
+          renderCart();
+        }
+      }
+
+      function toggleMenu() {
+        sideMenu.classList.toggle("show");
+      }
+
+      function filterCategory(cat) {
+        document.querySelectorAll(".category").forEach((c) => {
+          c.style.display =
+            cat === "all" || c.classList.contains(cat) ? "block" : "none";
+        });
+
+        // simpan state kategori
+        history.pushState({ page: "category", cat }, "", "#" + cat);
+
+        toggleMenu();
+      }
+
+      function openDetail(name, price, img, variants = [], toppings = []) {
+        current = {
+          name,
+          price,
+          img,
+          variants,
+          toppings,
+        };
+
+        qty = 1;
+
+        homePage.classList.add("hidden");
+        detailPage.classList.remove("hidden");
+
+        // ❌ footer disembunyikan
+        document.getElementById("mainFooter").style.display = "none";
+
+        // ⬅️ simpan ke history (HP back)
+        history.pushState({ page: "detail" }, "", "#detail");
+
+        detailTitle.textContent = name;
+        detailImg.src = "images/" + img;
+        qtyEl.textContent = qty;
+
+        // VARIANT
+        variantBox.innerHTML = "";
+        variants.forEach((v, i) => {
+          variantBox.innerHTML += `
+      <label>
+        <input type="radio" name="variant" value="${v}" ${i === 0 ? "checked" : ""}>
+        ${v}
+      </label>
+    `;
+        });
+
+        // TOPPING
+        toppingBox.innerHTML = "";
+        toppings.forEach((t) => {
+          toppingBox.innerHTML += `
+      <label>
+        <input type="checkbox" class="topping" data-price="${t.price}">
+        ${t.name} (+Rp ${t.price.toLocaleString("id-ID")})
+      </label>
+    `;
+        });
+
+        updateSubtotal();
+      }
+
+      function changeQty(v) {
+        qty = Math.max(1, qty + v);
+        qtyEl.textContent = qty;
+        updateSubtotal();
+      }
+
+      function updateSubtotal() {
+        if (!current.price) {
+          subtotal.textContent = "Rp 0";
+          return;
+        }
+
+        let toppingTotal = 0;
+        document.querySelectorAll(".topping:checked").forEach((t) => {
+          toppingTotal += Number(t.dataset.price);
+        });
+
+        const total = qty * current.price + toppingTotal;
+        subtotal.textContent = "Rp " + total.toLocaleString("id-ID");
+      }
+
+      function addToCart() {
+        const variant = document.querySelector(
+          'input[name="variant"]:checked',
+        ).value;
+
+        let toppings = [];
+        let extra = 0;
+
+        document.querySelectorAll(".topping:checked").forEach((t) => {
+          toppings.push({
+            name: t.parentElement.textContent.trim(),
+            price: Number(t.dataset.price),
+          });
+          extra += Number(t.dataset.price);
+        });
+
+        cart.push({
+          name: current.name,
+          price: current.price,
+          img: current.img,
+          variants: current.variants,
+          toppingsOptions: current.toppings,
+          qty,
+          variant,
+          toppings,
+          extra,
+        });
+
+        saveCart();
+        renderCart();
+        //   backHome();
+      }
+
+      const cartItems = document.getElementById("cartItems");
+      const cartTotal = document.getElementById("cartTotal");
+
+      function renderCart() {
+        let html = "";
+        let total = 0;
+        let totalQty = 0;
+
+        cart.forEach((i, idx) => {
+          const itemTotal = i.qty * i.price + i.extra;
+          total += itemTotal;
+          totalQty += i.qty;
+
+          html += `
+      <div class="cart-item">
+        <div class="cart-left">
+          <strong>${i.name}</strong>
+          <div class="cart-sub">
+            ${i.variant} × ${i.qty}
+            ${
+              i.toppings.length
+                ? `<br><small>+ ${i.toppings.map((t) => t.name).join(", ")}</small>`
+                : ""
+            }
+          </div>
+          <div class="cart-price">
+            Rp ${itemTotal.toLocaleString("id-ID")}
+          </div>
+        </div>
+    //     <button class="cart-remove" onclick="removeItem(${idx})">✕</button>
+    //   </div>
+    `;
+        });
+
+        cartItems.innerHTML = html;
+        cartTotal.textContent = "Rp " + total.toLocaleString("id-ID");
+        cartBadge.textContent = totalQty;
+        cartBadge.style.display = totalQty ? "block" : "none";
+      }
+
+      function removeItem(i) {
+        cart.splice(i, 1);
+        saveCart(); // ✅ SIMPAN
+        renderCart();
+      }
+
+      function backHome() {
+        history.back();
+      }
+      function goHome() {
+        // tampilkan home
+        homePage.classList.remove("hidden");
+        detailPage.classList.add("hidden");
+
+        // tampilkan semua kategori
+        document.querySelectorAll(".category").forEach((c) => {
+          c.style.display = "block";
+        });
+
+        // tutup hamburger kalau terbuka
+        const sideMenu = document.getElementById("sideMenu");
+        if (sideMenu) sideMenu.classList.remove("show");
+
+        // rapikan history (biar HP back nggak aneh)
+        history.pushState({ page: "home" }, "", "#home");
+      }
+
+      function openCart() {
+        if (!cart.length) {
+          alert("Keranjang masih kosong");
+          return;
+        }
+
+        homePage.classList.add("hidden");
+        detailPage.classList.remove("hidden");
+
+        history.pushState({ page: "cart" }, "", "#cart");
+
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+
+      function checkout() {
+        if (!cart.length) {
+          alert("Keranjang kosong");
+          return;
+        }
+
+        let msg = "Halo, saya ingin pesan:\n";
+        let total = 0;
+
+        cart.forEach(function (i) {
+          const itemTotal = i.qty * i.price + i.extra;
+          total += itemTotal;
+
+          msg += "- " + i.name + " (" + i.variant + ") x" + i.qty + "\n";
+
+          if (i.toppings.length) {
+            msg +=
+              "  + " +
+              i.toppings
+                .map(function (t) {
+                  return t.name;
+                })
+                .join(", ") +
+              "\n";
+          }
+        });
+
+        const noteEl = document.getElementById("orderNote");
+        const note = noteEl.value.trim();
+
+        if (note) {
+          msg += "\n📝 Catatan:\n" + note + "\n";
+        }
+
+        msg += "\nTotal: Rp " + total.toLocaleString("id-ID");
+
+        // 🧹 CLEAR DATA
+        cart = [];
+        localStorage.removeItem("cart");
+        renderCart();
+        noteEl.value = "";
+
+        // 🚩 FLAG CHECKOUT
+        sessionStorage.setItem("justCheckout", "1");
+
+        // 🚀 KE WHATSAPP
+        window.location.href =
+          "https://wa.me/6281318229451?text=" + encodeURIComponent(msg);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadCart();
+        window.addEventListener("pageshow", function () {
+          if (sessionStorage.getItem("justCheckout")) {
+            // bersihkan UI
+            cart = [];
+            localStorage.removeItem("cart");
+            renderCart();
+
+            const noteEl = document.getElementById("orderNote");
+            if (noteEl) noteEl.value = "";
+
+            // hapus flag
+            sessionStorage.removeItem("justCheckout");
+          }
+        });
+        window.addEventListener("popstate", (e) => {
+          const state = e.state;
+
+          // default: tampilkan home
+          homePage.classList.remove("hidden");
+          detailPage.classList.add("hidden");
+
+          // tampilkan semua kategori
+          document.querySelectorAll(".category").forEach((c) => {
+            c.style.display = "block";
+          });
+
+          // ✅ FOOTER DEFAULT (HOME)
+          const footer = document.getElementById("mainFooter");
+          if (footer) footer.style.display = "block";
+
+          // kalau dari detail / cart
+          if (state?.page === "detail" || state?.page === "cart") {
+            homePage.classList.add("hidden");
+            detailPage.classList.remove("hidden");
+
+            // ❌ footer disembunyikan
+            if (footer) footer.style.display = "none";
+          }
+        });
+
+        const noteEl = document.getElementById("orderNote");
+        if (noteEl) {
+          noteEl.addEventListener("input", () => {
+            noteEl.style.height = "auto";
+            noteEl.style.height = noteEl.scrollHeight + "px";
+          });
+        }
+      });
+    </script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <footer id="mainFooter" class="footer">© 2026 GHin4PS</footer>
+  </body>
+</html>
