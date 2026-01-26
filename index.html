@@ -284,7 +284,7 @@
     <!-- DETAIL -->
     <section id="detailPage" class="page hidden">
       <header class="topbar">
-        <button class="back" onclick="backHome()">❮</button>
+        <!-- <button class="back" onclick="backHome()">❮</button> -->
 
         <div id="detailTitle"></div>
       </header>
@@ -509,8 +509,8 @@
             Rp ${itemTotal.toLocaleString("id-ID")}
           </div>
         </div>
-    //     <button class="cart-remove" onclick="removeItem(${idx})">✕</button>
-    //   </div>
+        <button class="cart-remove" onclick="removeItem(${idx})">✕</button>
+      </div>
     `;
         });
 
@@ -671,4 +671,3 @@
     <footer id="mainFooter" class="footer">© 2026 GHin4PS</footer>
   </body>
 </html>
-
